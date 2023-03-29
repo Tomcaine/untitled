@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "digitalio.h"
 
-#define INTERRUPT_PIN 2
 self::digitalio led('B', PB3);
 self::digitalio tasta('B', PB0);
 
