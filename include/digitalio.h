@@ -5,46 +5,27 @@
 #ifndef UNTITLED_DIGITALIO_H
 #define UNTITLED_DIGITALIO_H
 
+#define OUTPUT 1
+#define INPUT 0
+
 #include <stdint.h>
 #include <avr/io.h>
 namespace self {
-    class digitalio{
-        volatile uint8_t *DDR;
-        volatile uint8_t *PORT;
-        volatile uint8_t *PIN;
-        uint8_t opin;
-
+    class Digitalio{
     public:
-        digitalio(char port, uint8_t pin){
-            switch (port) {
-                case 'A':
-                    DDR = &DDRA;
-                    PORT = &PORTA;
-                    PIN = &PINA;
-                    break;
-                case 'B':
-                    DDR = &DDRB;
-                    PORT = &PORTB;
-                    PIN = &PINB;
-                    break;
-                case 'C':
-                    DDR = &DDRC;
-                    PORT = &PORTC;
-                    PIN = &PINC;
-                    break;
-                case 'D':
-                    DDR = &DDRD;
-                    PORT = &PORTD;
-                    PIN = &PIND;
-                    break;
-            }
-            opin = (1 << pin);
-        }
+        Digitalio(char port, uint8_t pin);
 
         void pinMode(uint8_t output) const;
 
         void digitalWrite(bool an) const;
         bool digitalRead() const;
+
+
+    private:
+        volatile uint8_t *_DDR;
+        volatile uint8_t *_PORT;
+        volatile uint8_t *_PIN;
+        uint8_t _pin;
     };
 }
 
